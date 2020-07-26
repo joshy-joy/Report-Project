@@ -1,0 +1,61 @@
+<div class="row table1" *ngIf="table.table1.length > 0">
+    <div class="col-12">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Job Name</th>
+            <th scope="col">Section Name</th>
+            <th scope="col">Squad Name</th>
+            <th scope="col">Mandays</th>
+            <th scope="col">AreaCovered<span class="order">^</span></th>
+            <th scope="col">mnd/AreaCov</th>
+            <th scope="col">Division</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of table.table1">
+                <th scope="col">{{ item.date }}</th>
+                <th scope="col">{{ item.jobName }}</th>
+                <th scope="col">{{ item.sectionName }}</th>
+                <th scope="col">{{ item.squadName }}</th>
+                <th scope="col">{{ item.mandays }}</th>
+                <th scope="col">{{ item.areaCovered }}</th>
+                <th scope="col">{{ item.mndArea }}</th>
+                <th scope="col">{{ item.division }}</th>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+<div class="row table2" *ngIf="table.table2.length > 0">
+    <button class="close-button" (click)="closeCompareTable()"> X</button>
+    <div class="col-12">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Job Name</th>
+            <th scope="col">Section Name</th>
+            <th scope="col">Squad Name</th>
+            <th scope="col">Mandays</th>
+            <th scope="col">AreaCovered</th>
+            <th scope="col">mnd/AreaCov</th>
+            <th scope="col">Division</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of table.table2">
+                <th scope="col">{{ item.date }}</th>
+                <th scope="col">{{ item.jobName }}</th>
+                <th scope="col">{{ item.sectionName }}</th>
+                <th scope="col">{{ item.squadName }}</th>
+                <th scope="col">{{ item.mandays }}</th>
+                <th scope="col">{{ item.areaCovered }}</th>
+                <th scope="col">{{ item.mndArea }}</th>
+                <th scope="col">{{ item.division }}</th>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

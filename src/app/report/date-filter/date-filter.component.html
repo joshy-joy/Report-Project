@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="form-group row">
+        <div class="col-6">
+            <label for="start-date" class="col-12 col-form-label text-center">Start Date</label>
+            <input class="form-control" type="date" value="2011-08-19" id="start-date" name="start-date" ngModel>
+        </div>
+        <div class="col-6">
+            <label for="end-date" class="col-12 col-form-label text-center">End Date</label>
+            <input class="form-control" type="date" value="2011-08-19" id="end-date" name="end-date" ngModel>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12">
+            <button class="btn btn-secondary" type="submit">Go</button>
+            <button class="btn btn-primary" type="button" (click)="compareTables(form)">Compare</button>
+        </div>
+    </div>
+</form>
