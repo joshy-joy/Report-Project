@@ -10,11 +10,11 @@ import { getLocaleFirstDayOfWeek } from '@angular/common';
 })
 export class CultivationComponent implements OnInit {
 
-	startdate;enddate;displayedColumns;dataSource;dataSourceCmp;showCompare;
+	startdate; enddate; startdateCmp; enddateCmp; displayedColumns; dataSource; dataSourceCmp; showCompare;
 
 	//dev purpose
 	_startdate = '2020-07-01';
-	_enddate = '2020-07-03';
+	_enddate = '2020-07-14';
 
 	constructor(private http: HttpClient) {
 	}
@@ -35,36 +35,39 @@ export class CultivationComponent implements OnInit {
 	}
 
 	clickedGo() {
-		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
 		this.http.get(url).subscribe((data: ICultivation) => {
 			this.dataSource = data;
 		});
 	}
 
 	clickedCompare() {
-		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		this.showCompare = true;
+	}
+
+	clickedGoCompare() {
+		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
 		this.http.get(url).subscribe((data: ICultivation) => {
 			this.dataSourceCmp = data;
-			this.showCompare = true;
 		});
 	}
 
-	totalAreaCovered() {
-		if (this.dataSource) {
-			return this.dataSource.map(t => t.AreaCovered).reduce((acc, value) => acc + value, 0);
-		} else return null;
-	}
-
-	totalManDays(){
-		if (this.dataSource) {
-			return this.dataSource.map(t => t.Mandays).reduce((acc, value) => acc + value, 0);
-		} else return null;
+	getTotal(_dataSrc: string, _field: string) {
+		if (this[_dataSrc]) {
+			return this.dataSource.map(t => t[_field]).reduce((acc, value) => acc + value, 0);
+		} else {
+			return null;
+		}
 	}
 
 	dateChange(type: string, event: MatDatepickerInputEvent<Date>) {
 		switch (type) {
-			case 'startdate': this.startdate = event.value;break;
-			case 'enddate': this.enddate = event.value;break;
+			case 'startdate': this.startdate = event.value; break;
+			case 'enddate': this.enddate = event.value; break;
+			case 'startdateCmp': this.startdateCmp = event.value; break;
+			case 'enddateCmp': this.enddateCmp = event.value; break;
 		}
 	}
 
