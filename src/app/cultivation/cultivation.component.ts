@@ -13,8 +13,8 @@ export class CultivationComponent implements OnInit {
 	startdate; enddate; startdateCmp; enddateCmp; displayedColumns; dataSource; dataSourceCmp; showCompare;
 
 	//dev purpose
-	_startdate = '2020-07-01';
-	_enddate = '2020-07-14';
+	//_startdate = '2020-07-01';
+	//_enddate = '2020-07-14';
 
 	constructor(private http: HttpClient) {
 	}
@@ -23,20 +23,23 @@ export class CultivationComponent implements OnInit {
 		this.startdate = new Date();
 		this.enddate = new Date();
 		this.startdate.setDate(this.startdate.getDate() - 1);
+		this.startdateCmp = this.startdate;
+		this.enddateCmp = this.enddate;
 		this.showCompare = false;
 		this.displayedColumns = ['Date', 'AreaCovered', 'Division', 'Job_Name', 'Mandays', 'Mnd/Area', 'Section_Name', 'Squad_Name'];
 
-		//load data with start date and end date
-		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate)+ '&end=' + this.convert(this.enddate);
-		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
+		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		//dev purpose
+		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
 		this.http.get(url).subscribe((data: ICultivation) => {
 			this.dataSource = data;
 		});
 	}
 
 	clickedGo() {
-		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
-		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
+		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
+		//dev purpose
+		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
 		this.http.get(url).subscribe((data: ICultivation) => {
 			this.dataSource = data;
 		});
@@ -47,8 +50,9 @@ export class CultivationComponent implements OnInit {
 	}
 
 	clickedGoCompare() {
-		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
-		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
+		const url = 'http://127.0.0.1:5000/cultdaily?start=' + this.convert(this.startdateCmp) + '&end=' + this.convert(this.enddateCmp);
+		//dev purpose
+		//const url = 'http://127.0.0.1:5000/cultdaily?start=' + this._startdate + '&end=' + this._enddate;
 		this.http.get(url).subscribe((data: ICultivation) => {
 			this.dataSourceCmp = data;
 		});
@@ -56,7 +60,7 @@ export class CultivationComponent implements OnInit {
 
 	getTotal(_dataSrc: string, _field: string) {
 		if (this[_dataSrc]) {
-			return this.dataSource.map(t => t[_field]).reduce((acc, value) => acc + value, 0);
+			return this[_dataSrc].map(t => t[_field]).reduce((acc, value) => acc + value, 0);
 		} else {
 			return null;
 		}
