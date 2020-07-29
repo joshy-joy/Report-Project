@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //components
 import { CultivationComponent } from './cultivation/cultivation.component';
@@ -44,7 +45,7 @@ import { WeatherComponent } from './weather/weather.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

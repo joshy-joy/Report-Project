@@ -1,3 +1,4 @@
+<h3>Cultivation report</h3>
 <mat-form-field>
   <input matInput [matDatepicker]="picker1" placeholder="Start Date" [value]="startdate" disabled (dateChange)="dateChange('startdate', $event)">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -16,15 +17,39 @@
 
 <div class="example-container mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="Dt">
+    <ng-container matColumnDef="Date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.Dt}} </td>
-      <td mat-footer-cell *matFooterCellDef> Total </td>
+      <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+      <td mat-footer-cell *matFooterCellDef>Total</td>
+    </ng-container>
+
+    <ng-container matColumnDef="AreaCovered">
+      <th mat-header-cell *matHeaderCellDef> Area covered </th>
+      <td mat-cell *matCellDef="let element"> {{element.AreaCovered}} </td>
+      <td mat-footer-cell *matFooterCellDef>{{totalAreaCovered() | number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Division">
+      <th mat-header-cell *matHeaderCellDef> Division </th>
+      <td mat-cell *matCellDef="let element"> {{element.Division}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="Job_Name">
       <th mat-header-cell *matHeaderCellDef> Job Name </th>
       <td mat-cell *matCellDef="let element"> {{element.Job_Name}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mandays">
+      <th mat-header-cell *matHeaderCellDef> Mandays </th>
+      <td mat-cell *matCellDef="let element"> {{element.Mandays}} </td>
+      <td mat-footer-cell *matFooterCellDef>{{totalManDays() | number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mnd/Area">
+      <th mat-header-cell *matHeaderCellDef> Mnd/Area </th>
+      <td mat-cell *matCellDef="let element"> {{element.Mnd_Area}} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
@@ -51,17 +76,41 @@
 
 
 <div class="example-container mat-elevation-z8" *ngIf="showCompare">
-  <h1>Comparision</h1>
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="Dt">
+  <h3>Comparision</h3>
+  <table mat-table [dataSource]="dataSourceCmp">
+    <ng-container matColumnDef="Date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.Dt}} </td>
-      <td mat-footer-cell *matFooterCellDef> Total </td>
+      <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+      <td mat-footer-cell *matFooterCellDef>Total</td>
+    </ng-container>
+
+    <ng-container matColumnDef="AreaCovered">
+      <th mat-header-cell *matHeaderCellDef> Area covered </th>
+      <td mat-cell *matCellDef="let element"> {{element.AreaCovered}} </td>
+      <td mat-footer-cell *matFooterCellDef>{{totalAreaCovered() | number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Division">
+      <th mat-header-cell *matHeaderCellDef> Division </th>
+      <td mat-cell *matCellDef="let element"> {{element.Division}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="Job_Name">
       <th mat-header-cell *matHeaderCellDef> Job Name </th>
       <td mat-cell *matCellDef="let element"> {{element.Job_Name}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mandays">
+      <th mat-header-cell *matHeaderCellDef> Mandays </th>
+      <td mat-cell *matCellDef="let element"> {{element.Mandays}} </td>
+      <td mat-footer-cell *matFooterCellDef>{{totalManDays() | number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mnd/Area">
+      <th mat-header-cell *matHeaderCellDef> Mnd/Area </th>
+      <td mat-cell *matCellDef="let element"> {{element.Mnd_Area}} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
