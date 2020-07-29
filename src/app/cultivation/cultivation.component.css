@@ -5,6 +5,9 @@ mat-form-field, button {
 .example-container {
   height: 350px;
   overflow: auto;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 table {
