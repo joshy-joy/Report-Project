@@ -16,13 +16,12 @@ export interface MndDeployment {
 export class MndDeploymentComponent implements OnInit {
 
   displayedColumns: string[] = ['Job_Name', 'Mandays'];
-  dataSource: MndDeployment[] = [{Job_Name: 'SDE', Mandays: 5}, {Job_Name: 'SDE', Mandays: 10}];
+  dataSource: MndDeployment[];
   startdate: any;
   enddate: any;
   startdateCmp: any;
   enddateCmp: any;
   dataSourceCmp: MndDeployment[];
-  showCompare: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +31,6 @@ export class MndDeploymentComponent implements OnInit {
     this.startdate.setDate(this.startdate.getDate() - 1);
     this.startdateCmp = this.startdate;
     this.enddateCmp = this.enddate;
-    this.showCompare = false;
 
     const url = 'http://127.0.0.1:5000/mnddeploy?start=' + this.convert(this.startdate) + '&end=' + this.convert(this.enddate);
     this.http.get(url).subscribe((data: MndDeployment[]) => {
@@ -56,15 +54,10 @@ export class MndDeploymentComponent implements OnInit {
     });
   }
 
-  clickedCompare() {
-    this.showCompare = true;
-  }
-
   clickedGoCompare() {
     const url = 'http://127.0.0.1:5000/mnddeploy?start=' + this.convert(this.startdateCmp) + '&end=' + this.convert(this.enddateCmp);
     this.http.get(url).subscribe((data: MndDeployment[]) => {
       this.dataSourceCmp = data;
-      this.clickedCompare();
     });
   }
 
