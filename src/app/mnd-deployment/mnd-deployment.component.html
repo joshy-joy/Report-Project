@@ -1,1 +1,70 @@
-<p>mnd-deployment works!</p>
+<mat-grid-list cols="2" rowHeight="90px">
+    <mat-grid-tile>
+      <h3>Mnd Deployement</h3>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker1" placeholder="Start Date" [value]="startdate" disabled
+          (dateChange)="dateChange('startdate', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="End Date" [value]="enddate" disabled
+          (dateChange)="dateChange('enddate', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="clickedGo()">Go</button>
+  
+      <button mat-raised-button color="primary" (click)="clickedCompare()">Compare</button>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="2">
+    <mat-grid-tile>
+        <div class="example-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="example-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
