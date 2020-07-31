@@ -29,15 +29,15 @@
             <table mat-table [dataSource]="dataSource">
             
                 <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <ng-container matColumnDef="Job_Name">
+                <th mat-header-cell *matHeaderCellDef> Job Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.Job_Name}} </td>
                 </ng-container>
             
                 <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <ng-container matColumnDef="Mandays">
+                <th mat-header-cell *matHeaderCellDef> Mandays </th>
+                <td mat-cell *matCellDef="let element"> {{element.Mandays}} </td>
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -45,20 +45,20 @@
             </table>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile *ngIf="showCompare">
         <div class="example-container mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table [dataSource]="dataSourceCmp">
             
                 <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <ng-container matColumnDef="Job_Name">
+                <th mat-header-cell *matHeaderCellDef>Job Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.Job_Name}} </td>
                 </ng-container>
             
                 <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <ng-container matColumnDef="Mandays">
+                <th mat-header-cell *matHeaderCellDef> Mandays </th>
+                <td mat-cell *matCellDef="let element"> {{element.Mandays}} </td>
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
